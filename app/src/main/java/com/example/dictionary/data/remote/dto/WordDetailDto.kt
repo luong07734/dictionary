@@ -1,5 +1,6 @@
 package com.example.dictionary.data.remote.dto
 
+import com.example.dictionary.data.local.entities.WordDetailEntity
 import com.example.dictionary.domain.model.WordDetail
 
 data class WordDetailDto(
@@ -10,8 +11,8 @@ data class WordDetailDto(
     val sourceUrls: List<String>,
     val word: String
 ){
-    fun toWordDetail(): WordDetail{
-        return WordDetail(
+    fun toWordDetailEntity(): WordDetailEntity{
+        return WordDetailEntity(
             word = word,
             phonetics = phonetics.map { it.toPhonetic() },
             meanings = meanings.map { it.toMeaning() }
