@@ -15,23 +15,29 @@ class WordDetailRepository(private val database: DictionaryDatabase) {
 
     fun getWordDetail(word: String): Flow<List<WordDetail>> = flow {
 
-        val wordDetails = database.wordDetailDao.getWordDetails(word).map { it.toWordDetail() }
-        emit(wordDetails)
+//        val wordDetails = database.wordDetailDao.getWordDetails(word).map { it.toWordDetail() }
+//        emit(wordDetails)
         try {
             val remoteWordDetails = DictionaryApi.retrofitService.getWordDetail(word)
             database.wordDetailDao.deleteWordDetails(remoteWordDetails.map { it.word })
             database.wordDetailDao.insertWordDetails(remoteWordDetails.map { it.toWordDetailEntity() })
         }
         catch (e: HttpException){
-            Log.i("repo",e.message())
-            emit(wordDetails)
+            Log.i("repo","http" + e.message())
+//            emit(wordDetails)
 
         }catch (e: IOException){
-            Log.i("repo",e.message.toString())
-            emit(wordDetails)
+            Log.i("repo","io"+ e.message.toString())
+//            emit(wordDetails)
         }
 
         val newWordDetail = database.wordDetailDao.getWordDetails(word).map { it.toWordDetail() }
-        emit(newWordDetail)
+        if(newWordDetail.isEmpty()){
+            emit(arrayListOf())
+        }
+        else{
+            emit(newWordDetail)
+        }
+
     }
 }

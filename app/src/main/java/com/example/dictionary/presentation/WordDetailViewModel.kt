@@ -16,14 +16,11 @@ import kotlinx.coroutines.flow.flow
 class WordDetailViewModel(application: Application) : AndroidViewModel(application) {
     private val wordDetailRepository = WordDetailRepository(getDatabase(application))
 
-    var WordDetailsList: Flow<List<WordDetail>> = flow{}
+    var WordDetailsList: Flow<List<WordDetail>> = wordDetailRepository.getWordDetail("")
 
     fun onSearch(word: String){
-        WordDetailsList = if(word.isBlank()){
-            flow {  }
-        } else{
-            wordDetailRepository.getWordDetail(word)
-        }
+        WordDetailsList = wordDetailRepository.getWordDetail(word)
+
     }
 
     /**

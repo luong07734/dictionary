@@ -7,14 +7,14 @@ data class WordDetailDto(
     val license: LicenseDto,
     val meanings: List<MeaningDto>,
     val phonetic: String,
-    val phonetics: List<PhoneticDto>,
+    val phonetics: List<PhoneticDto>?,
     val sourceUrls: List<String>,
     val word: String
 ){
     fun toWordDetailEntity(): WordDetailEntity{
         return WordDetailEntity(
             word = word,
-            phonetics = phonetics.map { it.toPhonetic() },
+            phonetics = phonetics?.map { it.toPhonetic() },
             meanings = meanings.map { it.toMeaning() }
         )
     }

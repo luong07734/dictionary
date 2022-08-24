@@ -15,6 +15,6 @@ interface WordDetailDao {
     @Query("delete from worddetailentity where word in(:words)")
     suspend fun deleteWordDetails(words: List<String>)
 
-    @Query("select * from worddetailentity where word like '%' || :word || '%'")
+    @Query("select * from worddetailentity where word = :word ")
     suspend fun getWordDetails(word: String): List<WordDetailEntity>
 }

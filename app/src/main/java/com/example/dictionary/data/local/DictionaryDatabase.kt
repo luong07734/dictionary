@@ -7,8 +7,8 @@ import com.example.dictionary.data.local.entities.WordDetailEntity
 import com.example.dictionary.data.util.GsonParser
 import com.google.gson.Gson
 
-
-@Database( entities = [WordDetailEntity::class], version = 1, exportSchema = false)
+//86a7738fbb364404959a0db11fa137a5
+@Database( entities = [WordDetailEntity::class], version = 2, exportSchema = false)
 
 @TypeConverters(Converters::class)
 

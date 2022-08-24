@@ -12,7 +12,7 @@ import com.example.dictionary.domain.model.WordDetail
 @Entity
 data class WordDetailEntity(
     val meanings: List<Meaning>,
-    val phonetics: List<Phonetic>,
+    val phonetics: List<Phonetic>?,
     val word: String,
     @PrimaryKey val id: Int? = null
 ){
