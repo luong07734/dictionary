@@ -1,7 +1,7 @@
 package com.example.dictionary
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.dictionary.databinding.ActivityMainBinding
@@ -16,5 +16,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+        val actionBar = supportActionBar
+        actionBar?.hide()
     }
 }
